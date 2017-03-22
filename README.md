@@ -28,18 +28,22 @@ The project aimed at optimizing an online portfolio for PageSpeed Insight score 
 #### Consistent frame-rate of 60fps for views/pizza.html
 - Make changes in views/js/main.js
 - Changes in updatePositions()
- - Move var phase = Math.sin(document.body.scrollTop / 1250) outside for loop
- - Add phase += (i % 5) inside for loop
- - Reduced sliding pizzas count to 10
+ - Store document.body.scrollTop / 1250 in a seperate variable
+ - Create empty phase array outside of for loop
+ - Push Math.sin(scrollConstant + (i % 5)) in phase array
+ - Reduced sliding pizzas count to 48
+ - replace querySelector with getElementById
 - Changes in resizePizzas()
- - Create seperate variable for document.querySelector("#pizzaSize")
- - Replace all document.querySelector("#pizzaSize") with that variable inside changeSliderLabel()
+ - Replace all document.querySelector("#pizzaSize") with document.getElementById("pizzaSize")
 - Changes in changePizzaSizes()
- - Create new variable for document.querySelectorAll(".randomPizzaContainer")
- - Inside for loop remove variables dx and newwidth
+ - Create new variable for document.querySelectorAll(".randomPizzaContainer") and replace querySelectorAll with getElementByClassName
+ - Inside for loop remove variables dx and newwidth.
  - Add switch case to get newwidth value depending on the size variable
  - Inside for loop add that newwidth to randomPizza[i].style.width as percentage ratehr than pixel
 - Remove sizeSwitcher() and determineDx() as no longer needed
+- At Line 458: Craete variable and replace querySelector with getElementById for randomPizzas.
+- At line 460: Create another variable named fragment that could generate pizzas in for loop.
+- At line 466: Outside for loop append all fragments to pizzasDiv.
 
 
 Gruntfile is being used to generate minified javascript and css files.
